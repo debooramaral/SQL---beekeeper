@@ -1,0 +1,179 @@
+BANCO DE DADOS
+
+repositorio sistemico de informações
+
+Beekeeper
+
+https://github.com/jakeliny/Discover-SQL/blob/main/database.sqlite
+
+COMANDOS
+	- SELECT
+
+SELECT * FROM aluno
+
+SELECT * FROM professor
+
+SELECT * FROM aulas
+
+	- SELECT especificando campos
+
+SELECT nome, responsavel FROM aluno
+SELECT nome, materia, cpf FROM professor
+
+	- SELECT com WHERE
+
+SELECT * FROM aluno WHERE matricula = 1
+ 
+SELECT * FROM aluno WHERE nome like 'j%' (UM JEITO DE FALAR QUE NOME PRECISA SER TAL COISA)
+
+para campos com texto: utilize ""
+%: significa que tudo que tiver após, não me importa
+
+SELECT * FROM aluno WHERE nome like '%g%' (NÃO SEI O QUE VEM ANTES E NEM O QUE VEM DEPOIS)
+
+SELECT matricula, cpf FROM aluno WHERE nome like '%g%' (TROUXE A MATRICULA E O CPF DE TODOS OS DADOS QUE POSSUEM A LETRA G EM ALGUM MOMENTO)
+
+Operadores Relacionais
+
+=, igual (somente para campos que são números)
+
+	SELECT * FROM aluno WHERE cpf = 45678945645
+
+Like (mesma função do = mas para textos, estar em volta de aspas ou ' ')
+
+	SELECT * FROM aluno WHERE nome like 'mariano garcia'
+
+busca de conteudos de texto, sem saber o conteudo completo; digitar a palavra acompanhada de % sinaliza que precisa conter aquela palavra, nao importando para o que vem a seguir
+
+	SELECT * FROM aluno WHERE responsavel like 'josefina%'
+
+>, maior que
+
+	SELECT * FROM aluno WHERE matricula > 2	
+
+<, menor que
+
+	SELECT * FROM aluno WHERE matricula < 2
+
+>=, maior ou igual que
+
+	SELECT * FROM aluno WHERE matricula >= 2
+
+<=, menor ou igual que
+
+	SELECT * FROM aluno WHERE matricula <= 2
+
+<>, não igual a
+
+	SELECT * FROM aluno WHERE matricula <> 1
+
+!= diferente de
+
+	SELECT * FROM aluno WHERE matricula != 3
+		
+
+OPERADORES MATEMÁTICOS
+
++ ADIÇÃO
+	SELECT * FROM aluno WHERE matricula = 1 + 1
+	busca-se o resultado da matricula conforme a soma, trouxe portanto a matricula 2
+
+- SUBTRAÇÃO
+	SELECT * FROM aluno WHERE matricula = 3 - 1
+	a mesma coisa da soma, entra a matricula conforme calculo feito, no caso matricula 2
+
+* MULTIPLICAÇÃO
+	SELECT * FROM aluno WHERE matricula = 2 * 1
+	matricula 2
+
+/ DIVISÃO
+	SELECT * FROM aluno WHERE matricula = 4 / 2
+	buscar alunos cujo matriula seja o resultado de uma divisão, resultado é igual matricula 2
+
+% MODULO das divisões
+	SELECT * FROM aluno WHERE matricula = 4 % 3
+	trouxe a nossa matricula 1
+
+OPERADORES LÓGICOS
+	
+	AND
+	 SELECT * FROM aluno WHERE nome LIKE 'j%' AND matricula < 2
+	 matricula 1 
+
+	OR
+	 SELECT * FROM aluno WHERE matricula > 1 OR nome like 'J%'
+	 expressão que satisfaz qualquer uma das opções, trouxe todas as matriculas (3)
+
+	BETWEEN
+
+* pegar arquivo unindo tabelas no git hub, link acima
+	
+	select * from funcionarios where id_funcionario between 4 and 7
+	• funcionarios que trabalharam ontem a noite, de 4 a 7, quem são eles?
+	resultado a sequencia de id com os nomes
+
+	NOT BETWEEN (ignorar todos que estejam no intervalo mensionado)
+	
+	select * from funcionarios where id_funcionario not  between 4 and 7
+	• aparecerá apenas os funcionarios, 2 3 8 9 10 11
+		
+	IN e NOT IN
+
+	pegar funcionarios com departamento 5 2 e 1
+
+	select * from funcionarios where id_departamento in (1, 2, 5)
+	• o que contem (IN)
+
+	select * from funcionarios where id_departamento NOT in (1, 2, 5)
+	• que não sejam (NOT IN)
+
+	IS NULL e IS NOT NULL (vazio, campo nao preenchido)
+	
+	descobrir funcionário que não tem id do departamento cadastrado
+	
+	select * from funcionarios where id_departamento IS NULL
+	• SOMENTE A JOSEFINA
+
+	select * from funcionarios where id_departamento IS NOT NULL
+	
+	IS NULL e IS NOT NULL
+	
+	pegar funcionarios qe não possui id de departamento
+	
+	select * from funcionarios where id_departamento is null
+	• SOMENTE JOSEFINA
+
+	select * from funcionarios where id_departamento is not null
+	• TODOS MENOS JOSEFINA
+	
+INSERT INTO
+	
+	insere informações na tabela que escolhemos
+
+	INSERT INTO aluno (nome, cpf, responsavel) VALUES ('Débora', 04029059112, 'Noemia')
+
+UPDATE
+	altera algum dado que ja esta inserido na tabela
+	
+	UPDATE aluno SET nome = 'Mariano Soares', responsavel = 'Marcio Soares' WHERE matricula = 2
+
+	- lembrando que no código acima temos a tabela que receberá a alteração, depois os campos que serão alterados e por ultimo qual o dado que recebe a alteração, pelo id na tabela.. LEMBRAR de sempre usar o comando where, se nao troca todas as informações da tabela e de uma vez.
+
+DELETE
+	apague informação do nosso banco de dados, não apaga informação do campo no banco de dados, mas apaga o registro do banco de dados
+	
+	DELETE FROM aluno WHERE matricula = 3
+	deu erro ( FOREIGN KEY CONSTRAINT FAILED )
+
+	de todo jeito sempre que for executar um comando delete, não pode faltar o where se não apaga todos os registro da tabela no banco de dados
+	
+
+
+
+
+
+
+
+
+
+
